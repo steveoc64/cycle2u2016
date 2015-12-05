@@ -1,0 +1,5 @@
+{
+	"Debug": false,
+	"DataSourceName": "user=postgres password= dbname=cycle2u sslmode=disable",
+	"WebPort": 8070
+}
