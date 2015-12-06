@@ -1,5 +1,17 @@
 {
 	"Debug": false,
 	"DataSourceName": "user=postgres password= dbname=cycle2u sslmode=disable",
-	"WebPort": 8070
+	"WebPort": 8070,
+	"PostMail": false,
+	"Mail": {
+		"Port": 465,
+		"Host": "localhost",
+		"Username": "",
+		"Password": ""
+		},
+	"SMS": {
+		"Username": "",
+		"Password": "",
+		"Destination": ""
+	}
 }

@@ -33,6 +33,8 @@ cycle2u2
 cycle2u.com.au/js/app.js
 cycle2u.com.au/css/app.css
 config.json
+codegen.json
+*.php
 
 # =========================
 # Operating System Files

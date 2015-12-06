@@ -28,6 +28,8 @@ func _initRoutes() {
 	e.Get("/logout", logout)
 
 	e.Post("/syslog", querySyslog)
+
+	e.Post("/takebooking", takebooking)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,4 +234,12 @@ func logout(c *echo.Context) error {
 	log.Println("Logout:", UserID, Username)
 	sysLog(0, "Logout", "U", UserID, "Logout", c, claim)
 	return c.String(http.StatusOK, "bye")
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Take a booking
+
+func takebooking(c *echo.Context) error {
+
+	return c.File("booked.html", "booked.html", false)
 }

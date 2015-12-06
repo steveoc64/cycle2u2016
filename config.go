@@ -8,10 +8,22 @@ import (
 )
 
 // Runtime variables, held in external file config.json
+
 type ConfigType struct {
 	Debug          bool
 	DataSourceName string
 	WebPort        int
+	Mail           struct {
+		Port     int
+		Host     string
+		Username string
+		Password string
+	}
+	SMS struct {
+		Username    string
+		Password    string
+		Destination string
+	}
 }
 
 var Config ConfigType
@@ -33,8 +45,10 @@ func _loadConfig() {
 	flag.IntVar(&Config.WebPort, "webport", Config.WebPort, "Port Number for Web Server")
 	flag.Parse()
 
-	log.Printf("Starting\n\tDebug: \t\t%t\n\tSQLServer: \t%s\n\tWeb Port: \t%d\n",
+	log.Println("Mail Server:", Config.Mail.Host, Config.Mail.Port, Config.Mail.Username, Config.Mail.Password)
+	log.Println("SMS Server:", Config.SMS.Username, Config.SMS.Password, Config.SMS.Destination)
+	log.Println("SQL Server:", Config.DataSourceName)
+	log.Printf("Starting\n\tDebug: \t\t%t\n\tWeb Port: \t%d\n",
 		Config.Debug,
-		Config.DataSourceName,
 		Config.WebPort)
 }
