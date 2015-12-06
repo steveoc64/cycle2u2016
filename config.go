@@ -14,12 +14,14 @@ type ConfigType struct {
 	DataSourceName string
 	WebPort        int
 	Mail           struct {
-		Port     int
-		Host     string
-		Username string
-		Password string
+		Development bool
+		Port        int
+		Host        string
+		Username    string
+		Password    string
 	}
 	SMS struct {
+		Development bool
 		Username    string
 		Password    string
 		Destination string
@@ -45,8 +47,18 @@ func _loadConfig() {
 	flag.IntVar(&Config.WebPort, "webport", Config.WebPort, "Port Number for Web Server")
 	flag.Parse()
 
-	log.Println("Mail Server:", Config.Mail.Host, Config.Mail.Port, Config.Mail.Username, Config.Mail.Password)
-	log.Println("SMS Server:", Config.SMS.Username, Config.SMS.Password, Config.SMS.Destination)
+	if Config.Mail.Development {
+		log.Println("Mail Server: Development Only")
+	} else {
+		log.Println("Mail Server:", Config.Mail.Host, Config.Mail.Port, Config.Mail.Username, Config.Mail.Password)
+	}
+
+	if Config.SMS.Development {
+		log.Println("SMS Server: Development Only")
+	} else {
+		log.Println("SMS Server:", Config.SMS.Username, Config.SMS.Password, Config.SMS.Destination)
+	}
+
 	log.Println("SQL Server:", Config.DataSourceName)
 	log.Printf("Starting\n\tDebug: \t\t%t\n\tWeb Port: \t%d\n",
 		Config.Debug,
